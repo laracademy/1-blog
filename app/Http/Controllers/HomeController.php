@@ -16,11 +16,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        return 'I am the home page';
+        return view('blog.index');
     }
 
     public function view($slug)
     {
-        return 'I am accepting the '. $slug;
+        return view('blog.view', [
+            'slug' => $slug
+        ]);
     }
 }
