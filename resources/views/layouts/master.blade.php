@@ -28,11 +28,11 @@
 
     @include('layouts.partials.navigation')
 
-    <div class="container">
-
-      @yield('content')
-
-    </div><!-- /.container -->
+    <div class="wrapper">
+        <div class="container">
+          @yield('content')
+        </div><!-- /.container -->
+    </div>
 
 
     <!-- Bootstrap core JavaScript

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\Post;
+use Redirect;
 
 class HomeController extends Controller
 {
@@ -16,13 +18,24 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('blog.index');
+        $posts = Post::where('is_published', true)->orderBy('published_at', 'desc')->get();
+
+        return view('blog.index', [
+            'posts' => $posts
+        ]);
     }
 
     public function view($slug)
     {
+        $post = Post::getPost($slug)->first();
+
+        if(! $post)
+        {
+            return Redirect::route('home');
+        }
+
         return view('blog.view', [
-            'slug' => $slug
+            'post' => $post
         ]);
     }
 }

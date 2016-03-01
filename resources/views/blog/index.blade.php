@@ -1,5 +1,33 @@
 @extends('layouts.master')
 
 @section('content')
-i am the index page of the home controller
+
+    @if($posts->count() > 0)
+        @foreach($posts as $post)
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ $post->title }}</h4>
+                    <h5>{{ $post->published_at->format('F d, Y g:iA') }}</h5>
+                    <p>
+                        {{ str_limit($post->content, 60) }}
+                    </p>
+                    <p>
+                        <a href="{{ URL::route('view', $post->slug) }}" class="btn btn-default">Read More ...</a>
+                    </p>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning">
+                    <h4>Sorry</h4>
+                    <p>
+                        There are not posts that have been published, please check again later.
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endif
+
 @stop

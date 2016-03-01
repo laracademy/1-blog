@@ -18,7 +18,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'content', 'is_published', 'published_at'];
+    protected $fillable = ['title', 'content', 'slug', 'is_published', 'published_at'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -42,4 +42,12 @@ class Post extends Model
     protected $casts = [
         'is_published' => 'boolean',
     ];
+
+    // Query Scope
+    public function scopeGetPost($query, $slug)
+    {
+        $slug = str_slug($slug);
+
+        return $query->where('is_published', true)->where('slug', $slug);
+    }
 }
