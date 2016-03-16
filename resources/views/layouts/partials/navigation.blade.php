@@ -10,10 +10,27 @@
       <a class="navbar-brand" href="{{ URL::route('home') }}">My First Blog</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="{{ URL::route('home') }}">Home</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+        <!-- left hand -->
+        <ul class="nav navbar-nav">
+            <li><a href="{{ URL::route('home') }}">Home</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul> <!-- left hand -->
+        <!-- right hand -->
+        <ul class="nav navbar-nav navbar-right">
+            @if(Auth::check())
+                <li>
+                    <a href="{{ URL::route('administration.blog') }}">Administration</a>
+                </li>
+                <li>
+                    <a href="{{ URL::route('auth.logout') }}">Logout</a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ URL::route('auth.login') }}">Login</a>
+                </li>
+            @endif
+        </ul>
+        <!-- right hand -->
     </div><!--/.nav-collapse -->
   </div>
 </nav>
