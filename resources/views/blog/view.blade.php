@@ -10,7 +10,7 @@
                 {{ $post->published_at->format('F d, Y g:iA') }}
             </h4>
             <div class="">
-                {{ $post->content }}
+                {!! strip_tags($post->content, Config::get('tags.allowed.view')) !!}
             </div>
         </div>
     </div>

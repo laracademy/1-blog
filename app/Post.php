@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -49,5 +50,19 @@ class Post extends Model
         $slug = str_slug($slug);
 
         return $query->where('is_published', true)->where('slug', $slug);
+    }
+
+    // helper
+    public function publishPost()
+    {
+        $this->is_published = true;
+        $this->published_at = Carbon::now();
+        $this->save();
+    }
+
+    public function unpublishPost()
+    {
+        $this->is_published = false;
+        $this->save();
     }
 }

@@ -27,10 +27,10 @@ Route::group(['prefix' => 'administration', 'namespace' => 'Administration'], fu
             'uses' => 'BlogController@update')
         );
 
-        Route::get('/destroy', array(
+        Route::get('/destroy/{id}', array(
             'as'   => 'administration.destroy',
             'uses' => 'BlogController@destroy')
-        );
+        )->where('id', '[0-9]+');
 
         Route::get('/publish/{id}', array(
             'as'   => 'administration.publish',

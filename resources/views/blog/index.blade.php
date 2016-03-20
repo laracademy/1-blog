@@ -9,7 +9,7 @@
                     <h4>{{ $post->title }}</h4>
                     <h5>{{ $post->published_at->format('F d, Y g:iA') }}</h5>
                     <p>
-                        {{ str_limit($post->content, 60) }}
+                        {!! str_limit(strip_tags($post->content, Config::get('tags.allowed.homepage')), 250) !!}
                     </p>
                     <p>
                         <a href="{{ URL::route('view', $post->slug) }}" class="btn btn-default">Read More ...</a>

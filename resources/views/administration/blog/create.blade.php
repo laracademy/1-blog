@@ -9,7 +9,9 @@
 
     <script>
         $(function() {
-            $('#summernote').summernote();
+            $('#summernote').summernote({
+                height: 300
+            });
         });
     </script>
 @stop
@@ -38,11 +40,15 @@
 
                 <div class="form-group">
                     <label>Content</label>
-                    <textarea name="content" id="summernote" cols="30" rows="10">{{ old('content') }}</textarea>
+                    <textarea name="content" id="summernote" cols="30" rows="10" class="form-control" style="height: 300px;">{{ old('content') }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Save Post">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <input type="submit" value="Save Post" class="btn btn-success btn-block">
+                        </div>
+                    </div>
                 </div>
 
             </form>

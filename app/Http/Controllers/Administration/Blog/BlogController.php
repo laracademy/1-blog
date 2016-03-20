@@ -92,4 +92,46 @@ class BlogController extends Controller
         return Redirect::route('administration.blog');
     }
 
+    public function destroy($id)
+    {
+        $post = Post::where('id', $id)->first();
+
+        if(! $post)
+        {
+            return Redirect::route('administration.blog');
+        }
+
+        $post->delete();
+
+        return Redirect::route('administration.blog');
+    }
+
+    public function publish($id)
+    {
+        $post = Post::where('id', $id)->first();
+
+        if(! $post)
+        {
+            return Redirect::route('administration.blog');
+        }
+
+        $post->publishPost();
+
+        return Redirect::route('administration.blog');
+    }
+
+    public function unpublish($id)
+    {
+        $post = Post::where('id', $id)->first();
+
+        if(! $post)
+        {
+            return Redirect::route('administration.blog');
+        }
+
+        $post->unpublishPost();
+
+        return Redirect::route('administration.blog');
+    }
+
 }
